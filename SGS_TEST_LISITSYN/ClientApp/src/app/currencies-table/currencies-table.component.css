@@ -1,0 +1,10 @@
+th {
+    font-size: 24px;
+}
+
+td, th {
+  text-align: center !important;
+  font-weight: bold;
+  vertical-align: middle !important;
+}
+

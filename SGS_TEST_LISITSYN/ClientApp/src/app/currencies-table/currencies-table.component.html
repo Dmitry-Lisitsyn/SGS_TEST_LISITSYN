@@ -1,0 +1,36 @@
+<h1 id="tableLabel">Курсы валют ЦБ</h1>
+
+<p>Таблица показывает курсы валют по курсу ЦБ</p>
+<p>{{ date }}</p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="currencies">
+  <thead>
+    <tr>
+      <th>Цифр. код</th>
+      <th>Букв. код</th>
+      <th>Единиц</th>
+      <th>Валюта</th>
+      <th>Курс</th>
+      <th>Изменение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let currency of currencies">
+      <td>{{ currency.numCode }}</td>
+      <td>{{ currency.charCode }}</td>
+      <td>{{ currency.nominal }}</td>
+      <td>{{ currency.name }}</td>
+      <td>{{ currency.value }} ₽</td>
+      <td *ngIf="currency.value - currency.previous > 0" [ngStyle]="{'color':'green'}">
+        +{{ math.round((currency.value - currency.previous)*1000)/1000 }}
+      </td>
+      <td *ngIf="currency.value - currency.previous < 0" [ngStyle]="{'color':'red'}">
+        {{ math.round((currency.value - currency.previous)*1000)/1000 }}
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary" [routerLink] = "['/currencies_table/', currency.id]">Информация</button>
+      </td>
+    </tr> 
+
+  </tbody>
+</table>
